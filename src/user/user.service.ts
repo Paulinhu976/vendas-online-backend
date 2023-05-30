@@ -7,13 +7,13 @@ import { User } from './interfaces/user.interface';
 export class UserService {
   private users: User[] = [];
 
-  async createUser(createUserDto: CreateUserDto): Promise<User> {
+  async createUser(userDto: CreateUserDto): Promise<User> {
     const saltOrRounds = 10;
-    const passwordHash = await hash(createUserDto.password, saltOrRounds);
+    const passwordHash = await hash(userDto.password, saltOrRounds);
     console.log('passwordHash', passwordHash);
 
     const user: User = {
-      ...createUserDto,
+      ...userDto,
       id: this.users.length + 1,
       password: passwordHash,
     };
