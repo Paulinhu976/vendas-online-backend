@@ -13,4 +13,10 @@ export class StateService {
   async getAllState(): Promise<StateEntity[]> {
     return this.stateRepository.find();
   }
+
+  async getStateById(id: number): Promise<StateEntity> {
+    return this.stateRepository.findOne({
+      where: { id },
+    });
+  }
 }
