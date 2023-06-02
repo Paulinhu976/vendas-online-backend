@@ -37,4 +37,15 @@ export class UserService {
     }
     return user;
   }
+
+  async getUserByIdUsingRelation(userId: number): Promise<UserEntity> {
+    console.log(typeof userId);
+
+    return this.userRepository.findOne({
+      where: {
+        id: userId,
+      },
+      relations: ['adresses'],
+    });
+  }
 }
